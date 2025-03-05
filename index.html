@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JB-HS: Installs Audit App</title>
+    <link rel="icon" href="https://www.jbhifi.com.au/cdn/shop/files/favicon_7cbca4eb-4222-41b7-a8f8-9dc52b7c4a7c_32x32.png" sizes="32x32" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="head">
+        <img id="logo" src="https://cdn.shopify.com/s/files/1/0024/9803/5810/files/JB_HiFi_Logo-Horizontal-Colour_e8f06929-662f-4edc-87c0-6d67cd2ee7dc.png?v=1709275181">
+        <h1>Home Services: Installs Audit App</h1>
+    </div>
+    <div class="container">
+        <div class="left-column">
+            <div id="checklist-container">
+                <!-- Categories, subcategories, and checklist items will dynamically load here -->
+            </div>
+        </div>
+        <div class="right-column">
+            <div id="outputbox">
+                <h3>📢 Output</h3>
+                <textarea id="output" readonly></textarea>
+                <button id="copy-button">Copy to Clipboard</button>
+				<button id="clear-button">Clear Selection</button>
+				<button id="refresh-button">Refresh Page</button>
+            </div>
+        </div>
+    </div>
+    <!-- Changelog Popup -->
+    <div id="changelog-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <div class="changelog-text">
+				<b>Welcome to Den's audit app 🍷 I hope it saves you some time!</b><br><br>
+				<b>Version 3.2</b><br><br>
+				This version has been enhanced thanks to the valuable feedback from our fantastic new team members 
+				(shout out to Sarah Rhee!). Our goal is to make learning audits easier, as previous versions assumed 
+				users already understood them perfectly. We have introduced categories with subcategories, ensuring 
+				that options in these submenus only show relevant choices. For example, no more bracket or spirit 
+				level checks for just a setup and connect. Thanks, team, and please reach out if you have any ideas!<br><br>
+				
+				- UI Revamp: Categories → Subcategories → Checklist<br>
+				- Back Navigation Added: Users can step back one level at a time<br>
+				- Checklist Options Start Grey: Turn yellow when selected<br>
+				- Persistent Selections: Options stay selected across subcategories<br>
+				- Refresh Button Fix: Now clears selections and resets output<br>
+				- Fixed Category Selection Bug: Ensured categories work properly<br>
+				- Copy to Clipboard Update: Added "Copied!" visual feedback<br>
+				- Changelog Popup Fix: Now only shows when clicked<br>
+				- Removed banner text from misc options.<br>
+				- 3.1 Adjusted PC setup options.<br>
+				- 3.2 Added Clear Selection button, improved UI.<br>
+			</div>
+        </div>
+    </div>
+    <footer>
+        Made by Denby Serrao-Arnot | <a href="#" id="changelog-link">Changelog</a>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
