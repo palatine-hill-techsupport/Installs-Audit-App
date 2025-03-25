@@ -229,19 +229,24 @@
 
 		function updateOutput() {
 			let outputBox = document.getElementById('output');
-			
-			let isMisc = previousCategory === loadCategories && categoryData["🔍 Misc"].some(item => selectedItems.has(item));
+
+			// Gather all Misc checklist items
+			const miscItems = new Set(categoryData["🔍 Misc"]);
+
+			// Check if all selected items belong to the Misc category
+			let allAreMisc = Array.from(selectedItems).every(item => miscItems.has(item));
 
 			if (selectedItems.size > 0) {
-				if (isMisc) {
-					outputBox.value = Array.from(selectedItems).join('\n- ');
+				if (allAreMisc) {
+					outputBox.value = Array.from(selectedItems).join('\n');
 				} else {
 					outputBox.value = `Missing/Noncompliant photos:\n- ${Array.from(selectedItems).join('\n- ')}`;
 				}
 			} else {
 				outputBox.value = "";
 			}
-}
+		}
+
 		function refreshChecklistButtons() {
 			document.querySelectorAll('.option').forEach(button => {
 				if (selectedItems.has(button.textContent)) {
