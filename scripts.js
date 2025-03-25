@@ -90,6 +90,74 @@
 				"DTOW job ❌ No photo taken of variation.", "DTOW job ✅ Photo taken of variation.", "Escalated to FCM"
 			]
 		};
+		
+		// === Pro Mode Setup ===
+		document.getElementById('pro-toggle').addEventListener('change', function () {
+			const isChecked = this.checked;
+			document.getElementById('standard-mode').style.display = isChecked ? 'none' : 'flex';
+			document.getElementById('pro-mode').style.display = isChecked ? 'flex' : 'none';
+
+			const container = document.querySelector('.container');
+			container.classList.toggle('pro-mode-active', isChecked);
+
+			document.getElementById('refresh-button').style.display = isChecked ? 'none' : 'block';
+
+			if (isChecked) loadProModeLayout();
+		});
+		function loadProModeLayout() {
+			const container = document.getElementById('checklist-container-pro');
+			container.innerHTML = "";
+
+			Object.entries(categoryData).forEach(([category, content]) => {
+				let allItems = [];
+
+				if (Array.isArray(content)) {
+					allItems = content;
+				} else {
+					const itemSet = new Set();
+					Object.values(content).forEach(sublist => {
+						sublist.forEach(item => itemSet.add(item));
+					});
+					allItems = Array.from(itemSet);
+				}
+
+				const section = document.createElement('div');
+				const header = document.createElement('h2');
+				header.textContent = category;
+				section.appendChild(header);
+
+				allItems.forEach(item => {
+					const button = document.createElement('button');
+					button.textContent = item;
+					if (selectedItems.has(item)) {
+						button.classList.add('selected');
+					}
+					button.addEventListener('click', () => {
+						if (selectedItems.has(item)) {
+							selectedItems.delete(item);
+						} else {
+							selectedItems.add(item);
+						}
+						updateOutput();
+						refreshChecklistButtonsPro();
+					});
+					section.appendChild(button);
+				});
+
+				container.appendChild(section);
+			});
+		}
+
+		function refreshChecklistButtonsPro() {
+			const proButtons = document.querySelectorAll('#checklist-container-pro button');
+			proButtons.forEach(button => {
+				if (selectedItems.has(button.textContent)) {
+					button.classList.add('selected');
+				} else {
+					button.classList.remove('selected');
+				}
+			});
+		}
 
 		function loadCategories() {
 			previousCategory = null;
@@ -185,12 +253,18 @@
 		}
 		
 		document.getElementById('clear-button').addEventListener('click', () => {
-			selectedItems.clear();  // Clear selected options
-			updateOutput();  // Update the output text area
-			refreshChecklistButtons();  // Refresh button highlights
+		  selectedItems.clear();
+		  updateOutput();
+		  refreshChecklistButtons();
+		  refreshChecklistButtonsPro(); // <-- Add this line
 		});
 
-		document.getElementById('refresh-button').addEventListener('click', loadCategories);
+		document.getElementById('refresh-button').addEventListener('click', () => {
+			selectedItems.clear();              // Clears selection memory
+			updateOutput();                     // Clears text box
+			loadCategories();                   // Rebuilds Standard Mode
+			refreshChecklistButtonsPro();       // Visually resets Pro Mode buttons too
+		});
 		document.getElementById('copy-button').addEventListener('click', () => {
 			navigator.clipboard.writeText(document.getElementById('output').value).then(() => {
 				let copyButton = document.getElementById('copy-button');
@@ -213,3 +287,4 @@
 		});
 		loadCategories();
 	});
+	
