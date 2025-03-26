@@ -292,3 +292,13 @@
 		});
 		loadCategories();
 	});
+	
+	const proLabel = document.getElementById('pro-label');
+
+	proLabel.addEventListener('mouseenter', () => {
+		proLabel.textContent = 'Cory';
+	});
+
+	proLabel.addEventListener('mouseleave', () => {
+		proLabel.textContent = 'Pro';
+	});
