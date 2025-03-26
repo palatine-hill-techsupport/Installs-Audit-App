@@ -299,6 +299,7 @@ button.back-button:hover {
 .popup-content {
   position: relative;
   text-align: center;
+  padding-top: 40px;
 }
 
 .changelog-text {
@@ -318,6 +319,8 @@ button.back-button:hover {
   cursor: pointer;
   background: none;
   border: none;
+  padding-bottom: 25px;
+  padding-left: 25px;
 }
 
 .close-button:hover {
