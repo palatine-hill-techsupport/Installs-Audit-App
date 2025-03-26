@@ -266,6 +266,20 @@ button.back-button:hover {
   transform: translateX(26px);
 }
 
+#pro-mode-label {
+  display: inline-block;
+}
+
+#pro-label {
+  margin-right: 1px;
+  transition: color 0.2s ease;
+}
+
+#pro-label:hover {
+  cursor: pointer;
+  color: #028702;
+}
+
 /* === POPUP / FOOTER === */
 #changelog-popup {
   display: none;
@@ -318,4 +332,3 @@ footer {
   margin-bottom: 15px;
   width: 100%;
 }
-
